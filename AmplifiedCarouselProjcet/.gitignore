@@ -82,3 +82,12 @@ Assets/TextMesh Pro.meta
 UserSettings/EditorUserSettings.asset
 [Aa]ssets/msgbrowser_settings.asset
 PreviousProject.unitypackage
+
+
+# 大きなファイルやディレクトリのパス
+Assets/Butterfly (Animated)/FBX/butterfly.FBX
+Assets/Butterfly (Animated)/FBX/butterfly.fbm/butterfly_Albedo.tga
+Assets/Starfield Skybox/Demo/Textures/Down_Tex.png
+Assets/Starfield Skybox/Demo/Textures/Front_Tex.png
+Assets/Starfield Skybox/Demo/Textures/Up_Tex.png
+Assets/Amusement Park/Scenes/Demo Scene/LightingData.asset
