@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    [Header("実験に用いるためのパラメータ")]
-    [Space(10)]
+    // [Header("実験に用いるためのパラメタ")]
+    // [Space(10)]
 
     [Header("周期 [sec]")]
     public float span = 3.5f; 
@@ -27,6 +27,9 @@ public class TimerScript : MonoBehaviour
     public int transparency = 100;
     public bool updown = false; //上昇降下運動をおこなうためのフラグ
     public bool stateOfMove = true;
+
+    [Header("テクスチャ勾配の位置")]
+    public float stimulHeight = 0f;
 
     // Update is called once per frame
     void Update()

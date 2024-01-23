@@ -4,51 +4,39 @@ using UnityEngine;
 
 public class LineUp : MonoBehaviour
 {
-    //‚‚³
-    public float high;
-    //ƒIƒuƒWƒFƒNƒgŠÔ‚Ì•
+    //é«˜ã•
+    [SerializeField] float high;
+    //ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ô‚Ì•ï¿½
     public float width = 0.26f;
-    //ã‚©‚çŒ©‚ÄcAZ²‚ÌƒIƒuƒWƒFƒNƒg‚Ì—Ê
+    // ç¸¦ã«é…ç½®ã™ã‚‹æ•°
     public int vertical = 57;
-    //ã‚©‚çŒ©‚Ä‰¡AX²‚ÌƒIƒuƒWƒFƒNƒg‚Ì—Ê
+    // æ¨ªã«é…ç½®ã™ã‚‹æ•°
     public int horizontal = 57;
-
-    //Prefab‚ğ“ü‚ê‚é—“‚ğì‚é
     public GameObject cube;
-
-    //ˆÊ’u‚ğ“ü‚ê‚é•Ï”
     Vector3 pos;
+    public TimerScript timerScript;
 
     void Start()
     {
-
+        high = timerScript.stimulHeight;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //‚±‚ÌƒXƒNƒŠƒvƒg‚ğ“ü‚ê‚½ƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u
             pos = transform.position;
-
-            //Z²‚Évertical‚Ì”‚¾‚¯•À‚×‚é
             for (int vi = 0; vi < vertical; vi++)
             {
-                //X²‚Éhorizontal‚Ì”‚¾‚¯•À‚×‚é
                 for (int hi = 0; hi < horizontal; hi++)
                 {
-                    //Prefab‚ÌCube‚ğ¶¬‚·‚é
                     GameObject copy = Instantiate(cube,
-                        //¶¬‚µ‚½‚à‚Ì‚ğ”z’u‚·‚éˆÊ’u
                         new Vector3(
-                            //X²
                             pos.x + horizontal * width / 2 - hi * width - width / 2,
-                            //Y²
                             high,
-                            //Z²
                             pos.z + vertical * width / 2 - vi * width - width / 2
-                        //Quaternion.identity‚Í–³‰ñ“]‚ğw’è‚·‚é
-                        ), Quaternion.Euler(90f, 0f, 0f));
+                        ),
+                        Quaternion.Euler(90f, 0f, 0f));
                 }
             }
         }

@@ -6,29 +6,29 @@ using Valve.VR;
 
 public class TrackerTracking : MonoBehaviour
 {
-    //ƒgƒ‰ƒbƒJ[‚ÌˆÊ’uÀ•WŠi”[—p
+    //ï¿½gï¿½ï¿½ï¿½bï¿½Jï¿½[ï¿½ÌˆÊ’uï¿½ï¿½ï¿½Wï¿½iï¿½[ï¿½p
     private Vector3 Tracker1Posision;
 
-    //ƒgƒ‰ƒbƒJ[‚Ì‰ñ“]À•WŠi”[—piƒNƒH[ƒ^ƒjƒIƒ“j
+    //ï¿½gï¿½ï¿½ï¿½bï¿½Jï¿½[ï¿½Ì‰ï¿½]ï¿½ï¿½ï¿½Wï¿½iï¿½[ï¿½pï¿½iï¿½Nï¿½Hï¿½[ï¿½^ï¿½jï¿½Iï¿½ï¿½ï¿½j
     private Quaternion Tracker1RotationQ;
-    //ƒgƒ‰ƒbƒJ[‚Ì‰ñ“]À•WŠi”[—piƒIƒCƒ‰[Špj
+    //ï¿½gï¿½ï¿½ï¿½bï¿½Jï¿½[ï¿½Ì‰ï¿½]ï¿½ï¿½ï¿½Wï¿½iï¿½[ï¿½pï¿½iï¿½Iï¿½Cï¿½ï¿½ï¿½[ï¿½pï¿½j
     private Vector3 Tracker1Rotation;
 
-    //ƒgƒ‰ƒbƒJ[‚Ìposeî•ñ‚ğæ“¾‚·‚é‚½‚ß‚Étracker1‚Æ‚¢‚¤ŠÖ”‚ÉSteamVR_Actions.default_Pose‚ğŒÅ’è
+    //ï¿½gï¿½ï¿½ï¿½bï¿½Jï¿½[ï¿½ï¿½poseï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½é‚½ï¿½ß‚ï¿½tracker1ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½SteamVR_Actions.default_Poseï¿½ï¿½ï¿½Å’ï¿½
     private SteamVR_Action_Pose tracker1 = SteamVR_Actions.default_Pose;
 
-    //1ƒtƒŒ[ƒ€–ˆ‚ÉŒÄ‚Ño‚³‚ê‚éUpdateƒƒ]ƒbƒg
+    //1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ÉŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Updateï¿½ï¿½ï¿½]ï¿½bï¿½g
     void Update()
     {
-        //ˆÊ’uÀ•W‚ğæ“¾
+        //ï¿½Ê’uï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾
         Tracker1Posision = tracker1.GetLocalPosition(SteamVR_Input_Sources.Waist);
-        //‰ñ“]À•W‚ğƒNƒH[ƒ^ƒjƒIƒ“‚Å’l‚ğó‚¯æ‚é
+        //ï¿½ï¿½]ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½Nï¿½Hï¿½[ï¿½^ï¿½jï¿½Iï¿½ï¿½ï¿½Å’lï¿½ï¿½ï¿½ó‚¯ï¿½ï¿½
         Tracker1RotationQ = tracker1.GetLocalRotation(SteamVR_Input_Sources.Waist);
-        //æ“¾‚µ‚½’l‚ğƒNƒH[ƒ^ƒjƒIƒ“ ¨ ƒIƒCƒ‰[Šp‚É•ÏŠ·
+        //ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½Nï¿½Hï¿½[ï¿½^ï¿½jï¿½Iï¿½ï¿½ ï¿½ï¿½ ï¿½Iï¿½Cï¿½ï¿½ï¿½[ï¿½pï¿½É•ÏŠï¿½
         Tracker1Rotation = Tracker1RotationQ.eulerAngles;
 
-        //æ“¾‚µ‚½ƒf[ƒ^‚ğ•\¦iT1DFTracker1ˆÊ’uCT1RFTracker1‰ñ“]j
-        Debug.Log("T1D:" + Tracker1Posision.x + ", " + Tracker1Posision.y + ", " + Tracker1Posision.z + "\n" +
-                    "T1R:" + Tracker1Rotation.x + ", " + Tracker1Rotation.y + ", " + Tracker1Rotation.z);
+        //ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½\ï¿½ï¿½ï¿½iT1Dï¿½FTracker1ï¿½Ê’uï¿½CT1Rï¿½FTracker1ï¿½ï¿½]ï¿½j
+        // Debug.Log("T1D:" + Tracker1Posision.x + ", " + Tracker1Posision.y + ", " + Tracker1Posision.z + "\n" +
+        //             "T1R:" + Tracker1Rotation.x + ", " + Tracker1Rotation.y + ", " + Tracker1Rotation.z);
     }
 }

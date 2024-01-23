@@ -19,6 +19,9 @@ public class RotatePoint : MonoBehaviour
             Vector3 localAngle = myTransform.localEulerAngles;
             localAngle.z = Random.Range(0f, 360f);
             myTransform.localEulerAngles = localAngle;
+
+            //ランダムではなくて、自分の移動方向のベクトルに対して回転させる。
+            // Vector3 moveDirection = (mySelf - toHorse) - mySelf;
         }
     }
 }
