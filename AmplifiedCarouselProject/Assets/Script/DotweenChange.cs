@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DotweenChange : MonoBehaviour
 {
-
     Vector3 mySelf;
     private float amp;
 
@@ -28,8 +27,6 @@ public class DotweenChange : MonoBehaviour
 
     void Update()
     {
-
-
         currentCounter = timerScript.counter;   //Store variable
         amp = timerScript.amp;  //Store variable;
         pi = timerScript.pi;    //Store variable;
@@ -59,6 +56,7 @@ public class DotweenChange : MonoBehaviour
         }
     }
 
+    // 位相差なしの条件：
     void pi00()
     {
         if (currentCounter > counter)   //When timer wakeup
