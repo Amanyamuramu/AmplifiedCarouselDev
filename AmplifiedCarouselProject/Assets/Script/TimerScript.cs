@@ -25,11 +25,12 @@ public class TimerScript : MonoBehaviour
 
     [Header("透明度(100=不透明)")]
     public int transparency = 100;
+    [Header("テクスチャ勾配の位置")]
+    public float stimulHeight = 0f;
     public bool updown = false; //上昇降下運動をおこなうためのフラグ
     public bool stateOfMove = true;
 
-    [Header("テクスチャ勾配の位置")]
-    public float stimulHeight = 0f;
+    public bool stateOfMovingHalf = false;
 
     // Update is called once per frame
     void Update()
@@ -48,6 +49,10 @@ public class TimerScript : MonoBehaviour
             {
                 countdown = span;           //Set timer again
                 counter += 1;               //Add counter
+                stateOfMovingHalf = false;
+            }
+            if (countdown <= span/2.0f){
+                stateOfMovingHalf = true;
             }
         }
 

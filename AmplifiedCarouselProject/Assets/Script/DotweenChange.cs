@@ -15,6 +15,14 @@ public class DotweenChange : MonoBehaviour
     public float halfTime = 1.7f;
     private int pi;
 
+    Vector3 moveDirection;
+    Transform myTransform;
+    public Sprite leavingSprite; // 
+    public Sprite closingSprite; // 
+
+    float rotationOffset = 180f;
+    float angleOfFish = 0f;
+
     void Start()
     {
         mySelf = this.transform.position;   //Store init position
@@ -32,8 +40,10 @@ public class DotweenChange : MonoBehaviour
 
         // mySelf.y = timerScript.stimulHeight;
         // Horse = new Vector3(cameraTransform.position.x, timerScript.stimulHeight, cameraTransform.position.z);
-    
-        Vector3 moveDirection = (mySelf - toHorse) - mySelf;
+
+        myTransform = this.transform;
+
+        moveDirection = (mySelf - toHorse) - mySelf;
     }
 
     void Update()
@@ -49,6 +59,21 @@ public class DotweenChange : MonoBehaviour
             toHorse *= amp / Mathf.Pow(dist, 0.5f); //Amplified vector
         }
 
+        // moveDirection = (mySelf - toHorse) - mySelf;
+        moveDirection = (Horse - mySelf).normalized;
+
+        ChangeSprite();
+
+        if (moveDirection != Vector3.zero)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                //FIXME : フラグの状態に応じて変更
+                angleOfFish = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+                myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+            }
+        }
+        
         switch (pi)
         {
             case 0:
@@ -62,6 +87,22 @@ public class DotweenChange : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    
+    void ChangeSprite()
+    {
+        // closing processing visually stiml
+        if(timerScript.stateOfMovingHalf){
+            // GetComponent<SpriteRenderer>().sprite = leavingSprite; 
+            rotationOffset = 0f;
+            myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+        }
+        // leaving processing visually stiml
+        else{
+            // GetComponent<SpriteRenderer>().sprite = closingSprite;
+            rotationOffset = 180f;
+            myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
         }
     }
 
@@ -78,7 +119,7 @@ public class DotweenChange : MonoBehaviour
             {
                 sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
             }
-            
+
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime).SetEase(Ease.InOutQuad));    //Back to init position
             sequence.Join(this.transform.DOScale(1f, halfTime).SetEase(Ease.InOutQuad));    //Transform scale down
 
