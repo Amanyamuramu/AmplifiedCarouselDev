@@ -117,11 +117,11 @@ public class DotweenChange : MonoBehaviour
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x - toHorse.x, mySelf.y, mySelf.z - toHorse.z), halfTime).SetEase(Ease.InOutQuad));   //Move outside
             if (dist > 0f)
             {
-                sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
+                // sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
             }
 
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime).SetEase(Ease.InOutQuad));    //Back to init position
-            sequence.Join(this.transform.DOScale(1f, halfTime).SetEase(Ease.InOutQuad));    //Transform scale down
+            // sequence.Join(this.transform.DOScale(1f, halfTime).SetEase(Ease.InOutQuad));    //Transform scale down
 
             sequence.Play();    //Do instance
         }
@@ -130,7 +130,7 @@ public class DotweenChange : MonoBehaviour
             counter = 0;    //Init counter
             var sequence = DOTween.Sequence();  //Make instance
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), 0f).SetEase(Ease.InOutQuad));    //Back to init position
-            sequence.Join(this.transform.DOScale(1f, 0f).SetEase(Ease.InOutQuad));    //Transform scale down
+            // sequence.Join(this.transform.DOScale(1f, 0f).SetEase(Ease.InOutQuad));    //Transform scale down
         }
     }
 

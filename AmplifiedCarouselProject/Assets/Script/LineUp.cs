@@ -6,7 +6,6 @@ public class LineUp : MonoBehaviour
 {
     //高さ
     [SerializeField] float high;
-    //�I�u�W�F�N�g�Ԃ̕�
     public float width = 0.26f;
     // 縦に配置する数
     public int vertical = 57;
