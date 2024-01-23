@@ -5,7 +5,6 @@ public class DotweenChange : MonoBehaviour
 {
     Vector3 mySelf;
     private float amp;
-
     GameObject timerObject;
     TimerScript timerScript;
     private int counter;
@@ -23,6 +22,18 @@ public class DotweenChange : MonoBehaviour
         timerScript = timerObject.GetComponent<TimerScript>();  //Store script
         counter = 0;    //Init counter
         DOTween.SetTweensCapacity(tweenersCapacity: 25600, sequencesCapacity: 10240);
+
+        // Horse = GameObject.Find("Camera").transform.position;   //Find Camera Position
+        Horse = Vector3.zero;// ユーザの足元（cameraの位置はUnity上では原点）。よって実験においては0,0,0に変更
+
+        Horse.y = 0f;   //FXIME : 論文に記載するべき（G != 0）と
+        mySelf.y = 0f;
+        dist = Vector3.Distance(mySelf, Horse); //Measure distance between Camera and mySelf
+
+        // mySelf.y = timerScript.stimulHeight;
+        // Horse = new Vector3(cameraTransform.position.x, timerScript.stimulHeight, cameraTransform.position.z);
+    
+        Vector3 moveDirection = (mySelf - toHorse) - mySelf;
     }
 
     void Update()
@@ -33,12 +44,10 @@ public class DotweenChange : MonoBehaviour
 
         toHorse = Horse - mySelf;   //Culc vector to Camera
         //toHorse *= amp / Mathf.Pow(toHorse.sqrMagnitude, 0.5f); //Amplify vector
-        toHorse *= amp / Mathf.Pow(dist, 0.5f); //Amplify vector
-
-        Horse = GameObject.Find("Camera").transform.position;   //Find Camera Position
-        Horse.y = 0f;
-        mySelf.y = 0f;
-        dist = Vector3.Distance(mySelf, Horse); //Measure distance between Camera and mySelf
+        if (dist > 0f)
+        {
+            toHorse *= amp / Mathf.Pow(dist, 0.5f); //Amplified vector
+        }
 
         switch (pi)
         {
@@ -65,8 +74,11 @@ public class DotweenChange : MonoBehaviour
             var sequence = DOTween.Sequence();  //Make instance
 
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x - toHorse.x, mySelf.y, mySelf.z - toHorse.z), halfTime).SetEase(Ease.InOutQuad));   //Move outside
-            sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
-
+            if (dist > 0f)
+            {
+                sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
+            }
+            
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime).SetEase(Ease.InOutQuad));    //Back to init position
             sequence.Join(this.transform.DOScale(1f, halfTime).SetEase(Ease.InOutQuad));    //Transform scale down
 
@@ -88,8 +100,8 @@ public class DotweenChange : MonoBehaviour
             counter = currentCounter;   //Store counter to currentCounter
             var sequence = DOTween.Sequence();  //Make instance
 
-            sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime/2).SetEase(Ease.InOutQuad));    //Stay init position
-            sequence.Join(this.transform.DOScale(1f, halfTime/2).SetEase(Ease.InOutQuad));    //Stay init scale
+            sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime / 2).SetEase(Ease.InOutQuad));    //Stay init position
+            sequence.Join(this.transform.DOScale(1f, halfTime / 2).SetEase(Ease.InOutQuad));    //Stay init scale
 
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x - toHorse.x, mySelf.y, mySelf.z - toHorse.z), halfTime).SetEase(Ease.InOutQuad));   //Move outside
             sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
