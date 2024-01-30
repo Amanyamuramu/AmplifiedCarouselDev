@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   halfTime: 1.7
+  leavingSprite: {fileID: 0}
+  closingSprite: {fileID: 0}
 --- !u!114 &1984465811067260287
 MonoBehaviour:
   m_ObjectHideFlags: 0
