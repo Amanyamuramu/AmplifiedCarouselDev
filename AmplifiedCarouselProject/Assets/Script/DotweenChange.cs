@@ -96,13 +96,15 @@ public class DotweenChange : MonoBehaviour
         if(timerScript.stateOfMovingHalf){
             // GetComponent<SpriteRenderer>().sprite = leavingSprite; 
             rotationOffset = 0f;
-            myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+            // myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+            myTransform.eulerAngles = new Vector3(0f, angleOfFish+rotationOffset, 0f);
         }
         // leaving processing visually stiml
         else{
             // GetComponent<SpriteRenderer>().sprite = closingSprite;
             rotationOffset = 180f;
-            myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+            // myTransform.eulerAngles = new Vector3(90, angleOfFish+rotationOffset, 0);
+            myTransform.eulerAngles = new Vector3(0f, angleOfFish+rotationOffset, 0f);
         }
     }
 

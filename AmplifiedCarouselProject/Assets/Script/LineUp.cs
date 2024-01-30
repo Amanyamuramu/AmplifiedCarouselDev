@@ -35,7 +35,8 @@ public class LineUp : MonoBehaviour
                             high,
                             pos.z + vertical * width / 2 - vi * width - width / 2
                         ),
-                        Quaternion.Euler(90f, 0f, 0f));
+                        // Quaternion.Euler(90f, 0f, 0f)); // if the fish rotation
+                        Quaternion.Euler(0f, 0f, 0f));
                 }
             }
         }
