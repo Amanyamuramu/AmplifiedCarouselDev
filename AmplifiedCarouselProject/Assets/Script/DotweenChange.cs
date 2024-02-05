@@ -23,6 +23,8 @@ public class DotweenChange : MonoBehaviour
     float rotationOffset = 180f;
     float angleOfFish = 0f;
 
+    Vector3 originalScale;
+
     void Start()
     {
         mySelf = this.transform.position;   //Store init position
@@ -42,6 +44,7 @@ public class DotweenChange : MonoBehaviour
         // Horse = new Vector3(cameraTransform.position.x, timerScript.stimulHeight, cameraTransform.position.z);
 
         myTransform = this.transform;
+        originalScale = this.transform.localScale;
 
         moveDirection = (mySelf - toHorse) - mySelf;
     }
@@ -119,11 +122,18 @@ public class DotweenChange : MonoBehaviour
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x - toHorse.x, mySelf.y, mySelf.z - toHorse.z), halfTime).SetEase(Ease.InOutQuad));   //Move outside
             if (dist > 0f)
             {
+                // 元のスケールに対して変化を加える
+                float newScaleFactor = Mathf.Pow(amp * 15f / dist, 0.25f);
+                sequence.Join(this.transform.DOScale(originalScale * newScaleFactor, halfTime).SetEase(Ease.InOutQuad));
+
                 // sequence.Join(this.transform.DOScale(Mathf.Pow(amp * 15f / dist, 0.25f), halfTime).SetEase(Ease.InOutQuad));  //Transform scale up
             }
 
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), halfTime).SetEase(Ease.InOutQuad));    //Back to init position
             // sequence.Join(this.transform.DOScale(1f, halfTime).SetEase(Ease.InOutQuad));    //Transform scale down
+            
+            sequence.Join(this.transform.DOScale(originalScale, halfTime).SetEase(Ease.InOutQuad));
+
 
             sequence.Play();    //Do instance
         }
@@ -133,6 +143,7 @@ public class DotweenChange : MonoBehaviour
             var sequence = DOTween.Sequence();  //Make instance
             sequence.Append(this.transform.DOMove(new Vector3(mySelf.x, mySelf.y, mySelf.z), 0f).SetEase(Ease.InOutQuad));    //Back to init position
             // sequence.Join(this.transform.DOScale(1f, 0f).SetEase(Ease.InOutQuad));    //Transform scale down
+            sequence.Join(this.transform.DOScale(originalScale, 0f).SetEase(Ease.InOutQuad));
         }
     }
 

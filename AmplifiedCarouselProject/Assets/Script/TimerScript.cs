@@ -17,7 +17,7 @@ public class TimerScript : MonoBehaviour
     [Header("1周期のカウンター")]
     public int counter = 0;
 
-    [Header("振幅の大きさ")]
+    [Header("振幅の大きさ(強度)")]
     public float amp = 1f;
 
     [Header("加速度装置との位相差(実際にはcase文)")]
