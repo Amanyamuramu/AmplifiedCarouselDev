@@ -8,6 +8,10 @@ public class FixFrameRate : MonoBehaviour
     public int fixedFrameRate = 60;
     void Start()
     {
-        Application.targetFrameRate = fixedFrameRate;
+        // Application.targetFrameRate = fixedFrameRate;
+    }
+
+    void Update(){
+        // Application.targetFrameRate = fixedFrameRate;
     }
 }
