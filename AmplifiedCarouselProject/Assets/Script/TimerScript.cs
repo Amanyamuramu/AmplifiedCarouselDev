@@ -29,9 +29,7 @@ public class TimerScript : MonoBehaviour
     public float stimulHeight = 0f;
     public bool updown = false; //上昇降下運動をおこなうためのフラグ
     public bool stateOfMove = true;
-
     public bool stateOfMovingHalf = false;
-
     // Update is called once per frame
     void Update()
     {
